@@ -192,7 +192,7 @@
                         audioPlayer.play({
                             url: WidgetHome.currentTrack.stream_url + '?client_id=' + WidgetHome.info.data.content.soundcloudClientID,
                             title: WidgetHome.currentTrack.title,
-                            image: WidgetHome.currentTrack.artwork_url || WidgetHome.currentTrack.image,
+                            image: WidgetHome.currentTrack.artwork_url || WidgetHome.currentTrack.image || WidgetHome.currentTrack.user.avatar_url,
                             album: WidgetHome.currentTrack.tag_list,
                             artist: WidgetHome.currentTrack.user.username
                         });
@@ -282,7 +282,7 @@
                 };
                 WidgetHome.addToPlaylist = function (track) {
                     console.log('AddToPlaylist called-------------------------------');
-                    var playListTrack = new Track(track.title, track.stream_url + '?client_id=' + WidgetHome.info.data.content.soundcloudClientID, track.artwork_url, track.tag_list, track.user.username);
+                    var playListTrack = new Track(track.title, track.stream_url + '?client_id=' + WidgetHome.info.data.content.soundcloudClientID, (track.artwork_url || track.image || track.user.avatar_url), track.tag_list, track.user.username);
                     audioPlayer.addToPlaylist(playListTrack);
                 };
                 WidgetHome.removeFromPlaylist = function (track) {

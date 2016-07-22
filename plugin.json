@@ -4,6 +4,7 @@
   "pluginDescription": "With the SoundCloud plugin, simply enter your SoundCloud URL and automatically sync your tracks.Related Topics: MP4,stream",
   "supportEmail": "support@buildfire.com",
     "supportSite":"http://support.appdocumentation.com/knowledge-base/soundcloud-plugin-tutorial/",
+  "offlineModeEnabled": true,
   "pluginIcon": "icon.png",
   "control": {
     "content": {

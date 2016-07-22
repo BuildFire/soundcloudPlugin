@@ -20,10 +20,10 @@
                     <div ng-class="WidgetHome.tracks[$index].isPlaying ? 'bold':''"  class="list-item-odd col-xs-6 pull-left clickable "  ng-click="WidgetHome.goToTrack(WidgetHome.tracks[$index])">
                         <div class="list-item-media text-center overflow-hidden text-overlay">
                             <div class="list-media-holder text-overlay">
-                                <img ng-if="WidgetHome.tracks[$index].artwork_url"
+                                <img ng-if="WidgetHome.tracks[$index].artwork_url || WidgetHome.tracks[$index].user.avatar_url"
                                      load-image="1x1"
-                                     data-final-src="{{WidgetHome.tracks[$index].artwork_url}}"  crop-width="200" crop-height="200" crop-type="crop">
-                                <img ng-if="!WidgetHome.tracks[$index].artwork_url"
+                                     data-final-src="{{WidgetHome.tracks[$index].artwork_url || WidgetHome.tracks[$index].user.avatar_url}}"  crop-width="200" crop-height="200" crop-type="crop">
+                                <img ng-if="!WidgetHome.tracks[$index].artwork_url && !WidgetHome.tracks[$index].user.avatar_url"
                                      src="../../../styles/media/holder-1x1.png">
                             </div>
                         </div>
@@ -41,9 +41,9 @@
                          ng-if="WidgetHome.tracks[$index + 1]">
                         <div class="list-item-media text-center overflow-hidden text-overlay">
                             <div class="list-media-holder text-overlay">
-                                <img ng-if="WidgetHome.tracks[$index + 1].artwork_url"  load-image="1x1"
-                                     data-final-src="{{WidgetHome.tracks[$index + 1].artwork_url}}"   crop-width="200" crop-height="200" crop-type="crop">
-                                <img ng-if="!WidgetHome.tracks[$index + 1].artwork_url"
+                                <img ng-if="WidgetHome.tracks[$index + 1].artwork_url || WidgetHome.tracks[$index + 1].user.avatar_url"  load-image="1x1"
+                                     data-final-src="{{WidgetHome.tracks[$index + 1].artwork_url || WidgetHome.tracks[$index + 1].user.avatar_url}}"   crop-width="200" crop-height="200" crop-type="crop">
+                                <img ng-if="!WidgetHome.tracks[$index + 1].artwork_url && !WidgetHome.tracks[$index + 1].user.avatar_url"
                                      src="assets/images/placeholder200x200.png">
                             </div>
                         </div>

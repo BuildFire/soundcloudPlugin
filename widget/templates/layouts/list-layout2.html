@@ -19,7 +19,7 @@
                  ng-click="WidgetHome.goToTrack(track)">
                 <div class="list-item-media text-left overflow-hidden">
                     <div class="list-media-holder pull-left text-overlay" ng-if="track.artwork_url">
-                        <img load-image="16x9" data-final-src="{{track.artwork_url}}" crop-width="110" crop-height="60" crop-type="crop">
+                        <img load-image="16x9" data-final-src="{{track.artwork_url || track.user.avatar_url}}" crop-width="110" crop-height="60" crop-type="crop">
                     </div>
                     <div class="list-item-copy text-left padding-left-ten padding-right-ten text-overlay">
                         <p class="track-title ellipsis margin-zero text-primary"><a class="text-primary">{{track.title}}</a></p>

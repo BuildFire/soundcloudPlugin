@@ -18,10 +18,10 @@
             <div ng-class="track.isPlaying ? 'bold':''" class="clickable text-overlay" ng-repeat="track in WidgetHome.tracks"
                  ng-click="WidgetHome.goToTrack(track)">
                 <div class="plugin-banner clearfix text-overlay">
-                    <div class="text-overlay" ng-if="track.artwork_url">
-                        <img load-image="16x9" data-final-src="{{track.artwork_url}}"  crop-width="340" crop-height="190" crop-type="crop">
+                    <div class="text-overlay" ng-if="track.artwork_url || track.user.avatar_url">
+                        <img load-image="16x9" data-final-src="{{track.artwork_url || track.user.avatar_url}}"  crop-width="340" crop-height="190" crop-type="crop">
                     </div>
-                  <div class="text-overlay" ng-if="!track.artwork_url">
+                  <div class="text-overlay" ng-if="!track.artwork_url && !track.user.avatar_url">
                         <img src="../../../styles/media/holder-16x9.png">
                     </div>
                 </div>
