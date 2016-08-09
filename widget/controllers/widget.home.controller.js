@@ -109,7 +109,7 @@
                                 console.log('Got tracks--------------------------', data);
                                 WidgetHome.isBusy = false;
                                 var d = data.collection;
-                                if (d.length < WidgetHome.pageSize) {
+                                if (d.length < WidgetHome.pageSize && !data.next_href) {
                                     WidgetHome.noMore = true;
 
                                     if (WidgetHome.page == 0 && d.length == 0) {
@@ -117,9 +117,10 @@
                                     }
                                 }
                                 WidgetHome.tracks = WidgetHome.tracks.concat(d);
-
                                 console.log('WidgetHome.tracks', WidgetHome.tracks);
                                 $scope.$digest();
+                                if (d.length < WidgetHome.pageSize && data.next_href && WidgetHome.tracks && WidgetHome.tracks.length < WidgetHome.pageSize)
+                                    WidgetHome.loadMore();
                             });
                 };
 
