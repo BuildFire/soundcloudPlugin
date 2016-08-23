@@ -284,7 +284,23 @@
                 WidgetHome.addToPlaylist = function (track) {
                     console.log('AddToPlaylist called-------------------------------');
                     var playListTrack = new Track(track.title, track.stream_url + '?client_id=' + WidgetHome.info.data.content.soundcloudClientID, (track.artwork_url || track.image || track.user.avatar_url), track.tag_list, track.user.username);
+                    console.log(WidgetHome.playList);
+                    var found=0;
+                    if(WidgetHome.playList){
+                        for(var _index=0;_index<WidgetHome.playList.length;_index++){
+                            if(track.stream_url + '?client_id=' + WidgetHome.info.data.content.soundcloudClientID === WidgetHome.playList[_index].url ){
+                                found=1;
+                                break;
+                            }
+                            else{
+                                continue;
+                            }
+                        }
+                    }
+
+                    if(!found)
                     audioPlayer.addToPlaylist(playListTrack);
+
                 };
                 WidgetHome.removeFromPlaylist = function (track) {
                     console.log('removeFromPlaylist called-------------------------------');
@@ -421,6 +437,9 @@
                     WidgetHome.currentTrack = null;
                     WidgetHome.duration = '';
                     WidgetHome.showTrackSlider = false;
+                    WidgetHome.openSettings=false;
+                    WidgetHome.openMoreInfo = false;
+
                 });
 
                 /**

@@ -16,6 +16,7 @@
     'z-index': '0'}"></div>
     <div class="media-center-plugin" ng-if="!(WidgetHome.openMoreInfo || WidgetHome.openSettings)">
         <div class="media-header-link">
+            <a class="whiteTheme" ng-show="WidgetHome.settings.isPlayingCurrentTrack" >Playing | </a>
             <a class="whiteTheme" ng-click="WidgetHome.getFromPlaylist()">Open Playlist</a>
         </div>
         <div class="media-holder margin-top-fifteen">
@@ -73,7 +74,7 @@
             <span class="icon icon-dots whiteTheme"></span>
         </div>
         <div class="media-player-action-btns">
-            <!--<span class="icon icon-volume-high icon-sm" ng-click="WidgetHome.showVolume=!WidgetHome.showVolume"></span>-->
+         <!--  <span class="icon icon-volume-high icon-sm" ng-click="WidgetHome.showVolume=!WidgetHome.showVolume"></span>-->
             <span class="icon icon-ellipsis icon-sm whiteTheme" ng-click="WidgetHome.openMoreInfoOverlay()"></span>
             <span class="icon icon-cog icon-sm whiteTheme" ng-click="WidgetHome.getSettings()"></span>
         </div>
@@ -238,9 +239,9 @@
                     </div>
                 </div>
             </div>
-            <div class="margin-bottom-ten">
+           <!-- <div class="margin-bottom-ten">
                 <a ng-click="WidgetHome.closeSettingsOverlay()" class="whiteTheme">Done</a>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
