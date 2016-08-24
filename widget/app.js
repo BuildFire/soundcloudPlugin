@@ -128,25 +128,25 @@
           });
         };
       }])
-      .run(['$location', '$rootScope','$timeout', function ($location, $rootScope,$timeout) {
-            buildfire.navigation.onBackButtonClick = function () {
+        .run(['$location', '$rootScope','$timeout', function ($location, $rootScope,$timeout) {
+            buildfire.history.onPop(function(data, err){
+                console.log('buildfire.history.onPop----------------------------',data,'Error------------------',err);
                 if($rootScope.playTrack){
                     $timeout(function () {
                         if($rootScope.openPlaylist){
                             $rootScope.openPlaylist=false;
-                        }
-                        else{
+                        } else if($rootScope.openSettings) {
+                            $rootScope.openSettings = false;
+                        } else if($rootScope.openMoreInfo) {
+                            $rootScope.openMoreInfo = false;
+                        } else {
                             $rootScope.playTrack=false;
                             $rootScope.$broadcast("destroy currentTrack");
                         }
                     }, 100);
                     if($rootScope.$$phase){$rootScope.$digest();}
                 }
-                else{
-                    buildfire.navigation._goBackOne();
-                }
-            };
-
+            });
         }]);
 })
 (window.angular, window.buildfire);

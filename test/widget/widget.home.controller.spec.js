@@ -49,6 +49,11 @@ describe("WidgetHomeCtrl", function () {
                 onUpdate: function () {
 
                 }
+            },
+            history: {
+                get: function () {
+
+                }
             }
         };
 
@@ -72,7 +77,8 @@ describe("WidgetHomeCtrl", function () {
                 $timeout: $timeout,
                 DEFAULT_DATA: DEFAULT_DATA,
                 soundCloudAPI: soundCloudAPI,
-                Buildfire: BF
+                Buildfire: BF,
+                $rootScope: $rootScope
             });
             q = $q;
         });
@@ -287,7 +293,7 @@ describe("WidgetHomeCtrl", function () {
 
         it('should make openMoreInfo true', function () {
             controller.openMoreInfoOverlay();
-            expect(controller.openMoreInfo).toBeTruthy();
+            expect($rootScope.openMoreInfo).toBeTruthy();
         });
     });
 
@@ -385,7 +391,7 @@ describe("WidgetHomeCtrl", function () {
         });
     });
 
-    xdescribe('Initial Data fetch', function () {
+    describe('Initial Data fetch', function () {
         it('should set the info to default data in case fetch fails', function () {
             controller.SoundCloudInfoContent = {
                 get: function () {

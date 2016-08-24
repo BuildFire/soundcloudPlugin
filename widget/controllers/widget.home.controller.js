@@ -80,6 +80,21 @@
                 );
 
                 WidgetHome.goToTrack = function (track) {
+                    var breadCrumbFlag = true;
+
+                    Buildfire.history.get('pluginBreadcrumbsOnly', function (err, result) {
+                        if(result && result.length) {
+                            result.forEach(function(breadCrumb) {
+                                if(breadCrumb.label == track.title) {
+                                    breadCrumbFlag = false;
+                                }
+                            });
+                        }
+                        if(breadCrumbFlag) {
+                            Buildfire.history.push(track.title, { elementToShow: 'Media' });
+                        }
+                    });
+//                    Buildfire.history.push(track.title, { elementToShow:'Media'});
                     WidgetHome.showTrackSlider = false;
                     console.log('Goto Track called---------------------------------------', track);
                     audioPlayer.pause();
@@ -362,7 +377,21 @@
                         }
                     });
                     // }
-                    WidgetHome.openMoreInfo = false;
+                    var breadCrumbFlag = true;
+
+                    Buildfire.history.get('pluginBreadcrumbsOnly', function (err, result) {
+                        if(result && result.length) {
+                            result.forEach(function(breadCrumb) {
+                                if(breadCrumb.label == 'Playlist') {
+                                    breadCrumbFlag = false;
+                                }
+                            });
+                        }
+                        if(breadCrumbFlag) {
+                            Buildfire.history.push('Playlist', { elementToShow: 'Playlist' });
+                        }
+                    });
+                    $rootScope.openMoreInfo = false;
                     $rootScope.openPlaylist = true;
                 };
                 WidgetHome.changeTime = function (time) {
@@ -370,8 +399,24 @@
                     audioPlayer.setTime(time);
                 };
                 WidgetHome.getSettings = function (dontOpen) {
-                    if (!dontOpen)
-                        WidgetHome.openSettings = true;
+                    if (!dontOpen) {
+                        $rootScope.openSettings = true;
+                        var breadCrumbFlag = true;
+
+                        Buildfire.history.get('pluginBreadcrumbsOnly', function (err, result) {
+                            if(result && result.length) {
+                                result.forEach(function(breadCrumb) {
+                                    if(breadCrumb.label == 'Settings') {
+                                        breadCrumbFlag = false;
+                                    }
+                                });
+                            }
+                            if(breadCrumbFlag) {
+                                Buildfire.history.push('Settings', { elementToShow: 'Settings' });
+                            }
+                        });
+                    }
+
                     audioPlayer.settings.get(function (err, data) {
                         console.log('Got player settings-----------------------', err, data);
                         if (data) {
@@ -393,17 +438,36 @@
                     toggle ? track.swiped = true : track.swiped = false;
                 };
                 WidgetHome.openMoreInfoOverlay = function () {
-                    WidgetHome.openMoreInfo = true;
+                    $rootScope.openMoreInfo = true;
+                    var breadCrumbFlag = true;
+
+                    Buildfire.history.get('pluginBreadcrumbsOnly', function (err, result) {
+                        if(result && result.length) {
+                            result.forEach(function(breadCrumb) {
+                                if(breadCrumb.label == 'MoreMenu') {
+                                    breadCrumbFlag = false;
+                                }
+                            });
+                        }
+                        if(breadCrumbFlag) {
+                            Buildfire.history.push('MoreMenu', { elementToShow: 'MoreMenu' });
+                        }
+                    });
                 };
                 WidgetHome.closeSettingsOverlay = function () {
-                    WidgetHome.openSettings = false;
+                    //$rootScope.openSettings = false;
+                    Buildfire.history.pop();
+                    WidgetHome.closeSwipeRemove();
                 };
                 WidgetHome.closePlayListOverlay = function () {
-                    $rootScope.openPlaylist = false;
+                    Buildfire.history.pop();
+                    //$rootScope.openPlaylist = false;
                     WidgetHome.closeSwipeRemove();
                 };
                 WidgetHome.closeMoreInfoOverlay = function () {
-                    WidgetHome.openMoreInfo = false;
+                    //$rootScope.openMoreInfo = false;
+                    Buildfire.history.pop();
+                    WidgetHome.closeSwipeRemove();
                 };
                 WidgetHome.closeSwipeRemove = function () {
                     for (var _i = 0; _i < WidgetHome.swiped.length; _i++) {

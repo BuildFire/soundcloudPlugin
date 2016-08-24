@@ -136,9 +136,9 @@
     </div>
 
     <!-- More Info Overlay -->
-    <div ng-if="WidgetHome.openMoreInfo" class="overlay"
-         style="position:fixed; top:0; left:0; width:100%; height:100%;">
-        <div class="overlay-content" style="position:absolute; top:0; left:0; height:100%; width: 100%; overflow:auto;">
+    <div ng-if="openMoreInfo" class="overlay"
+         style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);">
+        <div class="overlay-content" style="postiion:absolute; top:0; left:0; height:100%; width: 100%; overflow:auto;">
             <div class="media-player-more-info">
                 <div class="media-holder margin-top-thirty">
                     <div class="media-inner text-center">
@@ -184,8 +184,8 @@
     </div>
 
     <!-- Settings Overlay -->
-    <div ng-if="WidgetHome.openSettings" class="overlay"
-         style="position:fixed; top:0; left:0; width:100%; height:100%;">
+    <div ng-if="openSettings" class="overlay"
+         style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);">
         <div class="overlay-content" style="position:absolute; top:0; left:0; height:100%; width: 100%; overflow:auto;">
             <div class="media-player-settings">
                 <div class="settings-list padded padding-top-zero">
