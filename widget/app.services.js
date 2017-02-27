@@ -53,7 +53,7 @@
                         deferred.resolve({ collection: [type] });
                         return deferred.promise;
                     } else if (type.kind == 'user') {
-                        var q = link.split('/').pop(); // get last route param i.e artist's name
+                        var q = type.id; // get user id
                         return SC.get('/users/' + q + '/tracks', {
                             limit: page_size,
                             offset: (page * page_size),
